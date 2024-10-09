@@ -13,7 +13,7 @@ class PdfController extends Controller {
         // Augmenter le temps d'exécution à 120 secondes
         set_time_limit(120);
     
-        // Valider l'upload et les inputs
+        // Valider l'upload et les inputs 
         $request->validate([
             'file' => 'required|file|mimes:docx',
             'company_name' => 'required|string',
