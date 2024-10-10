@@ -11,10 +11,10 @@ return new class extends Migration {
      */
     public function up(): void {
         Schema::create('forms', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary(); // UUID comme clé primaire
 
             $table->string('name');
-            $table->timestamp('validated_at'); // date de validation du formulaire par l'auteur
+            $table->timestamp('validated_at')->nullable(); // date de validation du formulaire par l'auteur
             $table->integer('validated_user_id'); // id de l'utilisateur qui doit faire la validation
             $table->boolean('active')->default(true);
 
@@ -26,8 +26,7 @@ return new class extends Migration {
     /**
      * Reverse the migrations.
      */
-    public function down(): void
-    {
+    public function down(): void {
         Schema::dropIfExists('forms');
     }
 };

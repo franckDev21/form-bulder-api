@@ -31,10 +31,6 @@ class PdfController extends Controller {
         $tempWordPath = storage_path('app/temp.docx');
         $tempPdfPath = storage_path('app/temp.pdf');
         $template->saveAs($tempWordPath);
-    
-        // Utiliser LibreOffice ou une autre librairie pour convertir Word en PDF
-        $outputPdfPath = storage_path('app/generated.pdf');
-
         
         $command = "libreoffice --headless --convert-to pdf $tempWordPath --outdir " . storage_path('app');
         

@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('field_lignes', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('column_cont');
+            $table->integer('column_count');
             $table->foreignIdFor(Form::class);
 
             $table->timestamps();

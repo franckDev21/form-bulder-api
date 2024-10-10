@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Auth\AuthController;
+use App\Http\Controllers\Api\FormController;
 use App\Http\Controllers\Api\PdfController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,8 @@ Route::get('/user-info', fn(Request $request) => $request->user())->middleware('
 
 // Auth
 Route::middleware(['auth:sanctum'])->group(function(){
+
+    Route::apiResource('form', FormController::class);
 
     // Route pour generer le fichier PDF a partir du Template
     Route::post('/generate-pdf-with-template', [PdfController::class, 'generate']);

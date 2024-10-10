@@ -11,7 +11,7 @@ class FieldLigne extends Model {
     use HasFactory;
 
     protected $fillable = [
-        'column_cont',
+        'column_count',
         'form_id',
     ];
 
