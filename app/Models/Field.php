@@ -16,7 +16,8 @@ class Field extends Model {
         'required',
         'crypted',
         'form_id',
-        'field_ligne_id'
+        'field_ligne_id',
+        'key',
     ];
 
     public function ligne(): BelongsTo {

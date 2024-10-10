@@ -26,6 +26,7 @@ class FormStoreRequest extends FormRequest {
             'lignes.*.column_count' => 'required|integer|min:1',  // 'column_count' est requis et doit être un entier
             'lignes.*.fields' => 'required|array|min:1',  // Chaque 'lignes' doit contenir un tableau 'fields' avec au moins un élément
             'lignes.*.fields.*.name' => 'required|string|max:255',  // Chaque 'name' dans 'fields' doit être une chaîne de caractères
+            'lignes.*.fields.*.key' => 'required|string|max:255',  // Chaque 'key' dans 'fields' doit être une chaîne de caractères
             'lignes.*.fields.*.placeholder' => 'nullable|string|max:255',  // 'placeholder' peut être nul ou une chaîne de caractères
             'lignes.*.fields.*.required' => 'required|boolean',  // 'required' doit être un booléen
             'lignes.*.fields.*.crypted' => 'required|boolean',  // 'crypted' doit être un booléen
@@ -36,6 +37,7 @@ class FormStoreRequest extends FormRequest {
     public function messages() {
         return [
             'name.required' => 'Le nom du formulaire est requis.',
+            'key.required' => 'La key du formulaire est requise.',
             'validated_user_id.required' => "L'ID de l'administrateur qui valide le formulaire est requis.",
             'validated_user_id.integer' => "L'ID de l'administrateur doit être un entier.",
             'validated_user_id.exists' => "L'administrateur validé n'existe pas.",

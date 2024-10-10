@@ -25,7 +25,6 @@ class Form extends Model {
         ];
     }
 
-
     // Override the primary key type to UUID
     public function getKeyType() {
         return 'string';
@@ -45,6 +44,10 @@ class Form extends Model {
 
     public function fields(): HasMany {
         return $this->hasMany(Field::class);
+    }
+
+    public function requestForms(): HasMany {
+        return $this->hasMany(UserRequestForm::class);
     }
 
 }
