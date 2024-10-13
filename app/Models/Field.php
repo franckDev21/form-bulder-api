@@ -21,13 +21,29 @@ class Field extends Model {
         'options'
     ];
 
+    protected $casts = [
+        'required' => 'boolean',
+        'crypted' => 'boolean',
+        'options' => 'array',
+    ];
 
-    protected function casts(): array {
-        return [
-            'required' => 'boolean',
-            'crypted' => 'boolean',
-            'options' => 'array'
-        ];
+    // Accessor to format 'options' as key-value pair
+    public function getOptionsAttribute($value) {
+        // Décoder les options JSON
+        $options = json_decode($value, true);
+
+        // Si c'est un tableau valide, transformer les données
+        if (is_array($options)) {
+            return array_map(function ($key, $value) {
+                return [
+                    'key' => $key,   // Conserve la clé originale (ex: 'option1')
+                    'value' => $value // Valeur correspondante (ex: 'Douala')
+                ];
+            }, array_keys($options), $options);
+        }
+
+        // Si le champ est null ou mal formé, retourner un tableau vide
+        return [];
     }
 
     public function ligne(): BelongsTo {

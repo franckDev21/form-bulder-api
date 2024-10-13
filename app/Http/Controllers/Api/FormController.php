@@ -56,6 +56,7 @@ class FormController extends Controller {
 
             // Supprimer les anciennes lignes et champs
             $form->lignes()->delete();
+            $form->fields()->delete();
 
             // Sauvegarde des nouvelles lignes du formulaire
             $this->storeFormLines($data['lignes'], $form->id);

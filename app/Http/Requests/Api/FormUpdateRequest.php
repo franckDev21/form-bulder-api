@@ -32,6 +32,7 @@ class FormUpdateRequest extends FormRequest
             'lignes.*.fields.*.placeholder' => 'nullable|string|max:255',  // 'placeholder' peut être nul ou une chaîne de caractères
             'lignes.*.fields.*.required' => 'required|boolean',  // 'required' doit être un booléen
             'lignes.*.fields.*.crypted' => 'required|boolean',  // 'crypted' doit être un booléen
+            'lignes.*.fields.*.options' => 'nullable',
             'lignes.*.fields.*.type' => 'required|string|in:' . implode(',', FieldEnum::values()),  // 'type' doit être soit 'input' soit 'textarea'
         ];
     }
