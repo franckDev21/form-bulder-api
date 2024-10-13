@@ -86,7 +86,7 @@ class FormController extends Controller {
             // Créer les champs et associer la ligne et l'utilisateur
             Field::create(array_merge($fieldData, [
                 'field_ligne_id' => $ligneId, // Associer l'id de la ligne à chaque champ
-                'form_id' => $formId
+                'form_id' => $formId,
             ]));
         }
     }

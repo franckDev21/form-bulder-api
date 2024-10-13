@@ -19,9 +19,14 @@ class Form extends Model {
         'user_id'
     ];
 
+    protected $append = [
+        'user_validated'
+    ];
+
     protected function casts(): array {
         return [
             'validated_at' => 'datetime',
+            'active' => 'boolean',
         ];
     }
 
@@ -50,4 +55,13 @@ class Form extends Model {
         return $this->hasMany(UserRequestForm::class);
     }
 
+    // Accessor for 'user_validated'
+    public function getUserValidatedAttribute(): User {
+        if ($this->validated_user_id) {
+            // Assuming 'User' model exists and is related to the form
+            $user = User::find($this->validated_user_id);
+            return $user ? $user : null; // You can return any attribute from the user
+        }
+        return null;
+    }
 }

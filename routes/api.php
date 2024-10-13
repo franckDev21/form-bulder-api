@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\FormController;
 use App\Http\Controllers\Api\PdfController;
+use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\UserRequestFormController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 // Get user informations
 Route::get('/user-info', fn(Request $request) => $request->user())->middleware('auth:sanctum');
 
+Route::get('/check-auth', [AuthController::class, 'check'])->middleware('auth:sanctum');
+
 // Post form user
 Route::post('/user-requests', [UserRequestFormController::class, 'store']);
 
@@ -28,4 +31,7 @@ Route::middleware(['auth:sanctum'])->group(function(){
 
     // Route pour generer le fichier PDF a partir du Template
     Route::post('/generate-pdf-with-template', [PdfController::class, 'generate']);
+
+    // users resources
+    Route::apiResource('user', UserController::class)->only('index');
 });

@@ -34,6 +34,19 @@ class AuthController extends Controller {
         ]);
     }
 
+    public function check(Request $request) {
+        if ($request->user()) {
+            return response()->json([
+                'data'   => $request->user(),
+                'status' => 200
+            ],200);
+        }
+
+        return response()->json([
+            'message' => 'Token is invalid'
+        ], 401);
+    }
+
      public function logout(Request $request){
          // Révoquer le token actuel de l'utilisateur
          $request->user()->currentAccessToken()->delete();

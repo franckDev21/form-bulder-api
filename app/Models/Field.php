@@ -18,7 +18,17 @@ class Field extends Model {
         'form_id',
         'field_ligne_id',
         'key',
+        'options'
     ];
+
+
+    protected function casts(): array {
+        return [
+            'required' => 'boolean',
+            'crypted' => 'boolean',
+            'options' => 'array'
+        ];
+    }
 
     public function ligne(): BelongsTo {
         return $this->belongsTo(FieldLigne::class);
